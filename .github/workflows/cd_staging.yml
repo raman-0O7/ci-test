@@ -10,8 +10,8 @@ jobs:
     name: Deploying to Staging
     steps:
       - run: |
-          echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@13.233.147.31
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          echo "yes" | ssh -i ~/ssh_key ubuntu@13.233.147.31
           cd ci-test/ && git pull
           pnpm install
           pnpm build
